@@ -36,7 +36,7 @@ def Pk_comp(snapshot_fname,ptype,dims,do_RSD,axis,cpus,folder_out):
     # read relevant paramaters on the header
     print('Computing power spectrum...')
     head     = readgadget.header(snapshot_fname)
-    BoxSize  = head.boxsize/1e3 #Mpc/h
+    BoxSize  = head.boxsize #Mpc/h
     Masses   = head.massarr*1e10 #Msun/h
     Nall     = head.nall;  Ntotal = np.sum(Nall,dtype=np.int64)
     Omega_m  = head.omega_m
@@ -119,7 +119,7 @@ def Pk_Gadget(snapshot_fname,dims,particle_type,do_RSD,axis,cpus,
     # read snapshot head and obtain BoxSize, Omega_m and Omega_L
     print('\nREADING SNAPSHOTS PROPERTIES')
     head     = readgadget.header(snapshot_fname)
-    BoxSize  = head.boxsize/1e3  #Mpc/h
+    BoxSize  = head.boxsize  #Mpc/h
     Nall     = head.nall
     Masses   = head.massarr*1e10 #Msun/h
     Omega_m  = head.omega_m

@@ -15,7 +15,7 @@ def density_field_gadget(snapshot_fname, ptypes, dims, MAS='CIC',
 
     # read relevant paramaters on the snapshot
     head     = readgadget.header(snapshot_fname)
-    BoxSize  = head.boxsize/1e3 #Mpc/h
+    BoxSize  = head.boxsize #Mpc/h
     Masses   = head.massarr*1e10 #Msun/h
     Nall     = head.nall;  Ntotal = np.sum(Nall,dtype=np.int64)
     filenum  = head.filenum

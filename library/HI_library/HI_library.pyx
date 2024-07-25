@@ -650,7 +650,7 @@ def Rahmati_HI_assignment(snapshot_fname, fac, TREECOOL_file, Gamma_UVB=None,
     # read snapshot head and obtain BoxSize, Omega_m and Omega_L
     print('\nREADING SNAPSHOT PROPERTIES')
     head     = readsnap.snapshot_header(snapshot_fname)
-    BoxSize  = head.boxsize/1e3 #Mpc/h
+    BoxSize  = head.boxsize #Mpc/h
     Nall     = head.nall
     redshift = head.redshift
 
@@ -703,7 +703,7 @@ def HI_from_UVB(snapshot_fname, double Gamma_UVB,
 
     # read snapshot head and obtain BoxSize, Omega_m and Omega_L
     head     = readsnap.snapshot_header(snapshot_fname)
-    BoxSize  = head.boxsize/1e3 #Mpc/h
+    BoxSize  = head.boxsize #Mpc/h
     Nall     = head.nall
     Masses   = head.massarr*1e10 #Msun/h
     Omega_m  = head.omega_m

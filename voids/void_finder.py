@@ -22,7 +22,7 @@ void_field = True
 
 # read snapshot head and obtain BoxSize, Omega_m and Omega_L
 head    = readgadget.header(snapshot)
-BoxSize = head.boxsize/1e3  #Mpc/h
+BoxSize = head.boxsize  #Mpc/h
 
 # read particle positions
 pos = readgadget.read_block(snapshot,"POS ",ptype=1)/1e3 #Mpc/h

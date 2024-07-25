@@ -30,7 +30,7 @@ for i in range(6):
 print('----------------------------------------------------------')
 
 print('z = %10.5f     : L = %8.2f Mpc/h :   a = %.7f'\
-   %(head.redshift, head.boxsize/1e3, head.time))
+   %(head.redshift, head.boxsize, head.time))
 print('%6d subfiles    : cooling %d          : Mnu = %.6f eV'\
    %(head.filenum, head.cooling, Omega[2]*head.hubble**2*94.1745))
 print('Omega_m = %.6f : Omega_l = %.6f :   h = %.6f\n'\

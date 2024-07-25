@@ -26,7 +26,7 @@ def geometry(snapshot, plane, x_min, x_max, y_min, y_max, z_min, z_max):
 
     # read snapshot head and obtain BoxSize
     head    = readgadget.header(snapshot)
-    BoxSize = head.boxsize/1e3 #Mpc/h                    
+    BoxSize = head.boxsize #Mpc/h                    
 
     plane_dict = {'XY':[0,1], 'XZ':[0,2], 'YZ':[1,2]}
 
@@ -70,7 +70,7 @@ def density_field_2D(snapshot, x_min, x_max, y_min, y_max, z_min, z_max,
 
     # read snapshot head and obtain BoxSize, filenum...
     head     = readgadget.header(snapshot)
-    BoxSize  = head.boxsize/1e3 #Mpc/h                    
+    BoxSize  = head.boxsize #Mpc/h                    
     Nall     = head.nall
     Masses   = head.massarr*1e10 #Msun/h                  
     filenum  = head.filenum
