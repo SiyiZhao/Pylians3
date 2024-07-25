@@ -70,6 +70,10 @@ class header:
             self.massarr  = head.massarr
             self.npart    = head.npart
             self.nall     = head.nall
+            if (self.massarr[2]==0 and self.nall[2]!=0): #neutrino mass = 0, no neutrinos, nall[2] is used to save nall>2^32
+                self.nall = np.array(self.nall, dtype=np.int64)
+                self.nall[1] += self.nall[2] * 2**32
+                self.nall[2] = 0
             self.cooling  = head.cooling
             self.format   = head.format
 
@@ -87,7 +91,7 @@ def read_field(snapshot, block, ptype):
     Nall              = head.nall         #total number of particles in the snapshot
     
     if fformat=="binary":
-        return readsnap.read_block(filename, block, parttype=ptype)
+        return readsnap.read_block(filename, block, parttype=ptype, nall=Nall)
     else:
         prefix = 'PartType%d/'%ptype
         f = h5py.File(filename, 'r')
@@ -134,7 +138,7 @@ def read_block(snapshot, block, ptype, verbose=False):
     elif block=="MASS":  dtype=np.float32
     elif block=="ID  ":  dtype=read_field(filename, block, ptype[0]).dtype
     else: raise Exception('block not implemented in readgadget!')
-
+    print(dtype)
     # define the array containing the data
     array = np.zeros(Ntotal, dtype=dtype)
 
@@ -146,7 +150,7 @@ def read_block(snapshot, block, ptype, verbose=False):
         # format I or format II Gadget files
         if fformat=="binary":
             array[offset:offset+Nall[pt]] = \
-                readsnap.read_block(snapshot, block, pt, verbose=verbose)
+                readsnap.read_block(snapshot, block, pt, verbose=verbose, nall=Nall)
             offset += Nall[pt]
 
         # single files (either binary or hdf5)
